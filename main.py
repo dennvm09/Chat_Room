@@ -4,6 +4,8 @@ from flask_socketio import SocketIO
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'vnkdjnfjknfl1232#'
+#socketio variable which enables us to use socketio instead of app in running the application
+socketio = SocketIO(app)
 
 @app.route('/') #la ruta a la que va a responder
 def sessions():
@@ -18,8 +20,7 @@ def handle_my_custom_event(json, methods=['GET', 'POST']):
     socketio.emit('my response', json, callback=messageReceived)
 
 
-#socketio variable which enables us to use socketio instead of app in running the application
-socketio = SocketIO(app)
+
 #The run() method takes optional host and port arguments
 #by default it will listen on localhost:5000 like Flask’s development web server. 
 #debug=True enables to sort out the errors with ease.
